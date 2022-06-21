@@ -1,18 +1,15 @@
 <?php
 
+/**
+ * This is the controller for the landing page. 
+ * This app has been built with data abstraction in mind.
+ */
+
 require('app/app.php');
 
 $view_bag = [
-    'title' => 'Glossary List',
-    'heading' => 'Glossary'
+    'title' => 'Syliant.xyz',
+    'heading' => 'Get Started With Syliant'
 ];
 
-if (isset($_GET['search'])) {
-    $items = Data::search_terms($_GET['search']);
-
-    $view_bag['heading'] = 'Search Results for ' . $_GET['search'];
-} else {
-    $items = Data::get_terms();
-}
-
-view('index', $items);
+view('index');
