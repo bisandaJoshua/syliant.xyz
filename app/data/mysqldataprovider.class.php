@@ -1,25 +1,58 @@
 <?php
 
 class MySqlDataProvider extends DataProvider {
-    public function get_terms() {
-        return $this->query('SELECT * FROM terms');
+    public function get_challenges() {
+        return $this->query_challenges('SELECT * FROM challenges_tb');
     }
-    
-    public function get_term($term) {
+
+    public function authenticate_user($email, $password) {
         $db = $this->connect();
 
         if ($db == null) {
             return;
         }
 
-        $sql = 'SELECT * FROM terms WHERE id = :id';
+        $sql = 'SELECT * FROM users_tb WHERE user_email = :email AND user_password = :user_password';
         $smt = $db->prepare($sql);
 
         $smt->execute([
-            ':id' => $term,
+            ':email' => $email,
+            ':user_password' => $password
         ]);
 
-        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'GlossaryTerm');
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'User');
+
+        $smt = null;
+        $db = null;
+
+        if (empty($data)) {
+            return;
+        }
+
+        
+
+        return $data[0];
+    }
+
+    public function get_users() {
+        return $this->query_users('SELECT * FROM users_tb');
+    }
+    
+    public function get_challenge($id) {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return;
+        }
+
+        $sql = 'SELECT * FROM challenges_tb WHERE id = :id';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':id' => $id,
+        ]);
+
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'Challenge');
 
         $smt = null;
         $db = null;
@@ -33,42 +66,53 @@ class MySqlDataProvider extends DataProvider {
         return $data[0];
     }
     
-    public function search_terms($search) {
-        return $this->query(
-            'SELECT * FROM terms WHERE term LIKE :search OR definition LIKE :search',
-            [':search' => '%'.$search.'%']
+    public function search_challenges($challenge_keyword) {
+        return $this->query_challenges(
+            'SELECT * FROM challenges_tb WHERE challenge_title LIKE :search OR challenge_description LIKE :search',
+            [':search' => '%'.$challenge_keyword.'%']
         );
     }
     
-    public function add_term($term, $definition) {
+    public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint) {
         $this->execute(
-            'INSERT INTO terms (term, definition) VALUES (:term, :definition)',
+            'INSERT INTO challenges_tb (challenge_title, challenge_category, challenge_description, challenge_points, challenge_soln, challenge_date, challenge_resource_url, challenge_hint) VALUES (:title, :category, :ch_description, :points, :soln, :ch_date, :ch_resource_url, :ch_hint)',
             [
-                ':term' => $term,
-                ':definition' => $definition
+                ':title' => $title,
+                ':category' => $category,
+                ':ch_description' => $description,
+                ':points' => $points,
+                ':soln' => $solution,
+                ':ch_date' => $date,
+                ':ch_resource_url' => $resource,
+                ':ch_hint' => $hint
             ]
         );
     }
     
-    public function update_term($original_term, $new_term, $definition) {
+    public function update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint) {
         $this->execute(
-            'UPDATE terms SET term = :term, definition = :definition WHERE id = :id',
+            'UPDATE challenges_tb SET challenge_title = :title, challenge_category = :category, challenge_description = :ch_description, challenge_points = :points, challenge_soln = :soln, challenge_date = :ch_date, challenge_resource_url = :ch_resource_url, challenge_hint = :ch_hint WHERE id = :id',
             [
-                ':term' => $new_term,
-                ':definition' => $definition,
-                ':id' => $original_term
+                ':title' => $title,
+                ':category' => $category,
+                ':ch_description' => $description,
+                ':points' => $points,
+                ':soln' => $solution,
+                ':ch_date' => $date,
+                ':ch_resource_url' => $resource,
+                ':ch_hint' => $hint
             ]
         );
     }
     
-    public function delete_term($term) {
+    public function delete_challenge($id) {
         $this->execute(
-            'DELETE FROM terms WHERE id = :id',
-            [':id' => $term]
+            'DELETE FROM challenges_tb WHERE id = :id',
+            [':id' => $id]
         );
     }
 
-    private function query($sql, $sql_parms = []) {
+    private function query_challenges($sql, $sql_parms = []) {
         $db = $this->connect();
 
         if ($db == null) {
@@ -84,7 +128,31 @@ class MySqlDataProvider extends DataProvider {
             $query->execute($sql_parms);
         }
 
-        $data = $query->fetchAll(PDO::FETCH_CLASS, 'GlossaryTerm');
+        $data = $query->fetchAll(PDO::FETCH_CLASS, 'Challenge');
+
+        $query = null;
+        $db = null;
+
+        return $data;
+    }
+
+    private function query_users($sql, $sql_parms = []) {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return [];
+        }
+
+        $query = null;
+
+        if (empty($sql_parms)) {
+            $query = $db->query($sql);
+        } else {
+            $query = $db->prepare($sql);
+            $query->execute($sql_parms);
+        }
+
+        $data = $query->fetchAll(PDO::FETCH_CLASS, 'User');
 
         $query = null;
         $db = null;
@@ -114,4 +182,6 @@ class MySqlDataProvider extends DataProvider {
             return null;
         }
     }
+
+    
 }

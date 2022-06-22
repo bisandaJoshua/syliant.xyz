@@ -2,9 +2,16 @@
 session_start();
 require('app/app.php');
 
+// ensure logged in members cant access this page.
 if (is_user_authenticated()) {
-    redirect('admin/');
+    redirect('members/'); //redirect them to the members section.
 }
+
+$view_bag = [
+    'title' => 'Syliant.xyz',
+    'heading' => 'Syliant Login',
+    'status' => ''
+];
 
 
 if (is_post()) {
@@ -12,11 +19,11 @@ if (is_post()) {
   $password = sanitize($_POST['password']); // TODO: validate this!
 
   // compare with data store
-  if (authenticate_user($email, $password)) {
+  if (Data::authenticate_user($email, $password)) {
     $_SESSION['email'] = $email;
-    redirect('admin/');
+    redirect('members/');
   } else {
-    $view_bag['status'] = "The provided crendentials didn't not work";
+    $view_bag['status'] = "The provided crendentials did not work";
   }
   
   if ($email == false) {

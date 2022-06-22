@@ -1,6 +1,6 @@
 <main class="container mt-3">
     <h1><?= $view_bag['heading'];?></h1>
-    <p class="fs-5 col-md-8">Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.</p>
+    <p class="fs-5 col-md-8">Syliant is a platform geared to aid teachers and students around the world better learn and solidify information security skills and concepts. By providing an easy to navigate user interface, students can enjoy solving challenges and collaborating with their peers in practicing the use of tools in order to solidify their understanding of the skills required of them in the information security field.</p>
 
     <div class="mb-5">
       <a href="register.php" class="btn btn-outline-primary btn-lg px-4">Let's Get Started!</a>

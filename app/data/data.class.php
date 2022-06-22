@@ -9,16 +9,16 @@ class Data {
         return self::$ds = $data_provider;
     }
 
-    static public function get_terms() {    
-        return self::$ds->get_terms();
+    static public function get_users() {    
+        return self::$ds->get_users();
     }
     
-    static public function get_term($term) {
-        return self::$ds->get_term($term);
+    static public function get_user($user_id) {
+        return self::$ds->get_user($user_id);
     }
     
-    static public function search_terms($search) {
-        return self::$ds->search_terms($search);
+    static public function search_challenges($challenge_keyword) {
+        return self::$ds->search_challenges($challenge_keyword);
     }
     
     static public function add_term($term, $definition) {
@@ -31,5 +31,9 @@ class Data {
     
     static public function delete_term($term) {
         return self::$ds->delete_term($term);
+    }
+
+    static public function authenticate_user($email, $password){
+        return self::$ds->authenticate_user($email, $password);
     }
 }
