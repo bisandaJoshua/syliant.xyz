@@ -2,7 +2,7 @@
 
 class MySqlDataProvider extends DataProvider {
     public function get_challenges() {
-        return $this->query_challenges('SELECT * FROM challenges_tb');
+        return $this->query_challenges('SELECT * FROM challenges_tb ORDER BY challenge_date DESC');
     }
 
     public function get_posts() {

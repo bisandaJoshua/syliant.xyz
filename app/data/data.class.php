@@ -17,6 +17,10 @@ class Data {
         return self::$ds->get_posts();
     }
 
+    static public function get_challenges(){
+        return self::$ds->get_challenges();
+    }
+
     static public function register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country){
         return self::$ds->register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country);
     }
