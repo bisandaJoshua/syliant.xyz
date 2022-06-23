@@ -37,7 +37,7 @@ class DataProvider {
             
     }
     
-    public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint) {
+    public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
         
     }
     

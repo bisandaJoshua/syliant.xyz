@@ -4,13 +4,15 @@
 	 */
 	$main_menu = [];
 	if ( isset($_SESSION['account_type'])){
+		$uid = $_SESSION['tracker']; // use the user id to track the user
+
 		if ( $_SESSION['account_type'] == 'teacher' ){
 			$main_menu = [
 				'home' => 'index.php',
 				'create' => 'create.php',
 				'manage students' => 'students.php',
 				'leaderboard' => 'leaderboard.php',
-				'profile' => 'profile.php',
+				'profile' => "profile.php?uid=$uid",
 				'logout' => '../logout.php'
 			];
 		} else {
@@ -19,7 +21,7 @@
 				'challenges' => 'challenges.php',
 				'forum' => 'forum.php',
 				'leaderboard' => 'leaderboard.php',
-				'profile' => 'profile.php',
+				'profile' => "profile.php?uid=$uid",
 				'logout' => '../logout.php'
 			];
 		}
@@ -41,6 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><?= ucwords($view_bag['title']); ?></title>
+	<link rel="icon" type="image/x-icon" href="<?= URL_ROOT;?>/assets/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<style>
 		body {

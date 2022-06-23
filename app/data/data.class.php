@@ -37,8 +37,8 @@ class Data {
         return self::$ds->search_challenges($challenge_keyword);
     }
     
-    static public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint) {
-        return self::$ds->add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint);
+    static public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
+        return self::$ds->add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner);
     }
     
     static public function update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint) {

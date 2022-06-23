@@ -1,6 +1,7 @@
 <?php 
 
 class User {
+    public $user_id;
     public $user_fn;
     public $user_ln;
     public $user_bio;

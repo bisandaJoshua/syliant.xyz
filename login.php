@@ -23,8 +23,10 @@ if (is_post()) {
   if (Data::authenticate_user($email, $password)) {
     $results = Data::authenticate_user($email, $password);
     $account_type = $results->user_account_type;
+    $user_id = $results->user_id;
     $_SESSION['logged_in_user'] = sha1($email);
     $_SESSION['account_type'] = $account_type;
+    $_SESSION['tracker'] = $user_id;
     redirect('members/index.php');
   } else {
     $view_bag['status'] = "The provided crendentials did not work.";

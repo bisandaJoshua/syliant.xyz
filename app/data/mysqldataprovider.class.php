@@ -57,11 +57,11 @@ class MySqlDataProvider extends DataProvider {
 
         // if the connection succeeds, grab all the columns from the users table
         // based on the id obtained from the query string.
-        $sql = 'SELECT * FROM users_tb WHERE id = :id';
+        $sql = 'SELECT * FROM users_tb WHERE user_id = :id';
         $smt = $db->prepare($sql);
 
         $smt->execute([
-            ':id' => $id,
+            ':id' => $user_id,
         ]);
 
         $data = $smt->fetchAll(PDO::FETCH_CLASS, 'User');
@@ -164,9 +164,9 @@ class MySqlDataProvider extends DataProvider {
         );
     }
     
-    public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint) {
+    public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
         $this->execute(
-            'INSERT INTO challenges_tb (challenge_title, challenge_category, challenge_description, challenge_points, challenge_soln, challenge_date, challenge_resource_url, challenge_hint) VALUES (:title, :category, :ch_description, :points, :soln, :ch_date, :ch_resource_url, :ch_hint)',
+            'INSERT INTO challenges_tb (challenge_title, challenge_category, challenge_description, challenge_points, challenge_soln, challenge_date, challenge_resource_url, challenge_hint, challenge_owner) VALUES (:title, :category, :ch_description, :points, :soln, :ch_date, :ch_resource_url, :ch_hint, :ch_owner)',
             [
                 ':title' => $title,
                 ':category' => $category,
@@ -175,7 +175,8 @@ class MySqlDataProvider extends DataProvider {
                 ':soln' => $solution,
                 ':ch_date' => $date,
                 ':ch_resource_url' => $resource,
-                ':ch_hint' => $hint
+                ':ch_hint' => $hint,
+                ':ch_owner' => $owner
             ]
         );
     }
