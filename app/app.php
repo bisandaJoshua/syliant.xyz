@@ -2,6 +2,7 @@
 
 
 define('APP_PATH', dirname(__FILE__) . '/../');
+define('URL_ROOT', 'http://localhost/syliant.xyz');
 
 require('config.php');
 require('functions.php');

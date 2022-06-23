@@ -2,6 +2,7 @@
 
 require('challenge.class.php');
 require('user.class.php');
+require('post.class.php');
 
 class DataProvider {
     function __construct($source) {
@@ -49,6 +50,10 @@ class DataProvider {
     }
 
     public function authenticate_user($email, $password){
+
+    }
+
+    public function register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country){
 
     }
 }

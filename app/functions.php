@@ -29,7 +29,7 @@ function sanitize($value) {
 }
 
 function is_user_authenticated() {
-    return isset($_SESSION['email']);
+    return isset($_SESSION['logged_in_user']);
 }
 
 function ensure_user_is_authenticated() {
