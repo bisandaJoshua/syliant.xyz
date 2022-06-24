@@ -159,7 +159,7 @@ class MySqlDataProvider extends DataProvider {
     
     public function search_challenges($challenge_keyword) {
         return $this->query_challenges(
-            'SELECT * FROM challenges_tb WHERE challenge_title LIKE :search OR challenge_description LIKE :search',
+            'SELECT * FROM challenges_tb WHERE challenge_category LIKE :search OR challenge_description LIKE :search',
             [':search' => '%'.$challenge_keyword.'%']
         );
     }

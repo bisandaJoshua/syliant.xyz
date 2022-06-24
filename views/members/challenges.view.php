@@ -4,9 +4,9 @@
             <h1 class="mt-5"><?= $view_bag['heading'] ?></h1>
         </div>
         <div class="row container">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search for a particular challenge..." aria-label="Search">
-                <input class="btn btn-outline-success" type="submit" value="Search">
+            <form class="d-flex" action="challenges.php" method="get">
+                <input class="form-control me-2" name="search_query" type="search" placeholder="Search for a particular challenge..." aria-label="Search">
+                <input class="btn btn-outline-success" name="search" type="submit" value="Search">
             </form>
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
