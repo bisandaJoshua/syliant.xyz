@@ -11,8 +11,5 @@ class Challenge {
     public $challenge_resource_url;
     public $challenge_hint;
     public $challenge_owner;
-    // function __construct($term, $definition) {
-    //     $this->term = $term;
-    //     $this->definition = $definition;
-    // }
+    public $challenge_solvers; // track the students who have solved challenges.
 }

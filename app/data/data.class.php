@@ -21,6 +21,14 @@ class Data {
         return self::$ds->get_challenges();
     }
 
+    static public function assign_points($user_id, $points){
+        return self::$ds->assign_points($user_id, $points);
+    }
+
+    static public function add_solver($challenge_id, $solver_email){
+        return self::$ds->add_solver($challenge_id, $solver_email);
+    }
+
     static public function register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country){
         return self::$ds->register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country);
     }

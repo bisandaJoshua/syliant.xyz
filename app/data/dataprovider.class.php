@@ -32,6 +32,14 @@ class DataProvider {
     public function get_user($user_id) {
         
     }
+
+    public function assign_points($user_id, $points){
+
+    }
+
+    public function add_solver($challenge_id, $solver_email){
+
+    }
     
     public function search_challenges($challenge_keyword) {
             

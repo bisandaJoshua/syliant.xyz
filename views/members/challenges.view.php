@@ -25,7 +25,11 @@
                         <div class="card-body">
                             <h5 class="card-title"><?= $challenge->challenge_title;?></h5>
                             <p class="card-text"><?= substr($challenge->challenge_description, 0, 100);?>...</p>
-                            <a href="challenge.php?chid=<?= $challenge->challenge_id;?>" class="btn btn-outline-dark">Solve</a>
+                            <?php if ( str_contains($challenge->challenge_solvers, $view_bag['user_mail'])):?>
+                                <a href="#" class="btn btn-outline-dark disabled">Already Solved</a>
+                            <?php else: ?>
+                                <a href="challenge.php?chid=<?= $challenge->challenge_id;?>" class="btn btn-outline-dark">Solve</a>
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>

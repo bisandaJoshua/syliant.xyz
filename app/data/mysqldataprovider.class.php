@@ -163,6 +163,26 @@ class MySqlDataProvider extends DataProvider {
             [':search' => '%'.$challenge_keyword.'%']
         );
     }
+
+    public function add_solver($challenge_id, $solver_email) {
+        $this->execute(
+            'UPDATE challenges_tb SET challenge_solvers = :solver WHERE challenge_id = :challenge_id',
+            [
+                ':solver' => $solver_email . ',',
+                ':challenge_id' => $challenge_id
+            ]
+        );
+    }
+
+    public function assign_points($user_id, $points) {
+        $this->execute(
+            'UPDATE users_tb SET user_points = :points WHERE user_id = :user_id',
+            [
+                ':points' => $points,
+                ':user_id' => $user_id
+            ]
+        );
+    }
     
     public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
         $this->execute(
@@ -199,7 +219,7 @@ class MySqlDataProvider extends DataProvider {
     
     public function delete_challenge($id) {
         $this->execute(
-            'DELETE FROM challenges_tb WHERE id = :id',
+            'DELETE FROM challenges_tb WHERE challenge_id = :id',
             [':id' => $id]
         );
     }
