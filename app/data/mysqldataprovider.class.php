@@ -108,7 +108,7 @@ class MySqlDataProvider extends DataProvider {
             return;
         }
 
-        $sql = 'SELECT * FROM challenges_tb WHERE id = :id';
+        $sql = 'SELECT * FROM challenges_tb WHERE challenge_id = :id';
         $smt = $db->prepare($sql);
 
         $smt->execute([
