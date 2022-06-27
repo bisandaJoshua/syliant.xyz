@@ -8,9 +8,9 @@ ensure_user_is_authenticated();
 
 $view_bag = [
     'title' => 'Syliant Security',
-    'heading' => 'Latest Tutorials'
+    'heading' => 'Student Leaderboard'
 ];
 
-$tutorials = Data::get_tutorials(); // fetch all the tutorials from the db
+$students = Data::get_students_acc_points(); // fetch all the students by their points
 
-view('members/index', $tutorials);
+view('members/leaderboard', $students);

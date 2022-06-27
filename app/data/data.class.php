@@ -13,6 +13,10 @@ class Data {
         return self::$ds->get_users();
     }
 
+    static public function get_students_acc_points() {    
+        return self::$ds->get_students_acc_points();
+    }
+
     static public function get_posts(){
         return self::$ds->get_posts();
     }

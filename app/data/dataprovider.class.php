@@ -14,6 +14,10 @@ class DataProvider {
         
     }
 
+    public function get_students_acc_points(){
+        
+    }
+
     public function get_challenges(){
 
     }

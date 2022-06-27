@@ -46,6 +46,10 @@ class MySqlDataProvider extends DataProvider {
         return $this->query_users('SELECT * FROM users_tb');
     }
 
+    public function get_students_acc_points(){
+        return $this->query_users('SELECT * FROM users_tb WHERE user_account_type = "student" ORDER BY user_points DESC');
+    }
+
     /**
      * This function grabs all the information about a single user 
      * from the database using the user's id, preferrably obtained 
