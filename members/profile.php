@@ -6,7 +6,7 @@ require('../app/app.php');
 ensure_user_is_authenticated();
 
 $view_bag = [
-    'title' => 'Syliant.xyz',
+    'title' => 'Syliant Security',
     'heading' => 'User Profile'
 ];
 

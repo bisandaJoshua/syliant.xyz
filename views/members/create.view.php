@@ -23,7 +23,7 @@
                         <option value="general knowledge">General Knowledge</option>
                         <option value="web security">Web Security</option>
                         <option value="digital forensics">Digital Forensics</option>
-                        <option value="digital forensics">Reverse Engineering</option>
+                        <option value="reverse engineering">Reverse Engineering</option>
                     </select>
                 </div>
             </div>
@@ -71,13 +71,13 @@
         <p>
             You can enter the details of your tutorial below and submit the tutorial to publish and make it accessible to all students on the site.
         </p>
-        <form action="create.php" method="post" class="p-3">
+        <form action="create.php" method="post" class="p-3" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 col-sm-12 mb-3">
                     <input type="text" class="form-control" name="tutorial_title" placeholder="Tutorial Title" aria-label="tutorial_title">
                 </div>
                 <div class="col-md-6 col-sm-12 mb-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="tutorial_category">
                         <option selected>Choose A Category</option>
                         <option value="cryptography">Cryptography</option>
                         <option value="scripting">Scripting</option>
@@ -85,13 +85,19 @@
                         <option value="general knowledge">General Knowledge</option>
                         <option value="web security">Web Security</option>
                         <option value="digital forensics">Digital Forensics</option>
-                        <option value="digital forensics">Reverse Engineering</option>
+                        <option value="reverse engineering">Reverse Engineering</option>
                     </select>
                 </div>
             </div>
             <div class="row mb-3">
                 <div class="col">
                     <textarea name="tutorial_description" class="form-control" id="tutorial-description" placeholder="Start typing your tutorial here..." cols="30" rows="8"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="tutorial_resource_url" class="form-label">Resources - Upload any pdf files related to your tutorial.</label>
+                    <input class="form-control" type="file" id="tutorial_resource_url" name="tutorial_resource_url" required>
                 </div>
             </div>
             <div class="form-group">

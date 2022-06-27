@@ -6,8 +6,10 @@ require('../app/app.php');
 ensure_user_is_authenticated();
 
 $view_bag = [
-    'title' => 'Syliant.xyz',
-    'heading' => 'Syliant Dashboard'
+    'title' => 'Syliant Security',
+    'heading' => 'Latest Tutorials'
 ];
 
-view('members/index', Data::get_posts());
+$tutorials = Data::get_tutorials();
+
+view('members/index', $tutorials);

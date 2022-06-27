@@ -9,6 +9,10 @@ class MySqlDataProvider extends DataProvider {
         return $this->query_posts('SELECT * FROM posts_tb');
     }
 
+    public function get_tutorials() {
+        return $this->query_tutorials('SELECT * FROM tutorials_tb ORDER BY tutorial_date DESC');
+    }
+
     public function authenticate_user($email, $password) {
         $db = $this->connect();
 
@@ -157,6 +161,34 @@ class MySqlDataProvider extends DataProvider {
         return $data[0];
     }
     
+    public function get_tutorial($id) {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return;
+        }
+
+        $sql = 'SELECT * FROM tutorials_tb WHERE tutorial_id = :id';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':id' => $id,
+        ]);
+
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'Tutorial');
+
+        $smt = null;
+        $db = null;
+
+        if (empty($data)) {
+            return;
+        }
+
+        
+
+        return $data[0];
+    }
+
     public function search_challenges($challenge_keyword) {
         return $this->query_challenges(
             'SELECT * FROM challenges_tb WHERE challenge_category LIKE :search OR challenge_description LIKE :search',
@@ -197,6 +229,20 @@ class MySqlDataProvider extends DataProvider {
                 ':ch_resource_url' => $resource,
                 ':ch_hint' => $hint,
                 ':ch_owner' => $owner
+            ]
+        );
+    }
+
+    public function add_tutorial($title, $category, $description, $owner, $resource_url, $date){
+        $this->execute(
+            'INSERT INTO tutorials_tb (tutorial_title, tutorial_category, tutorial_description, tutorial_owner, tutorial_resource_url, tutorial_date) VALUES (:tutorial_title, :tutorial_category, :tutorial_description, :tutorial_owner, :tutorial_resource_url, :tutorial_date)',
+            [
+                ':tutorial_title' => $title,
+                ':tutorial_category' => $category,
+                ':tutorial_description' => $description,
+                ':tutorial_owner' => $owner,
+                ':tutorial_resource_url' => $resource_url,
+                ':tutorial_date' => $date
             ]
         );
     }
@@ -241,6 +287,30 @@ class MySqlDataProvider extends DataProvider {
         }
 
         $data = $query->fetchAll(PDO::FETCH_CLASS, 'Challenge');
+
+        $query = null;
+        $db = null;
+
+        return $data;
+    }
+
+    private function query_tutorials($sql, $sql_parms = []) {
+        $db = $this->connect();
+
+        if ($db == null) {
+            return [];
+        }
+
+        $query = null;
+
+        if (empty($sql_parms)) {
+            $query = $db->query($sql);
+        } else {
+            $query = $db->prepare($sql);
+            $query->execute($sql_parms);
+        }
+
+        $data = $query->fetchAll(PDO::FETCH_CLASS, 'Tutorial');
 
         $query = null;
         $db = null;

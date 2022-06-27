@@ -1,6 +1,6 @@
 <main class="container">
     <?php
-        // display login error messages here. 
+        // display error messages here.
         if (!empty($view_bag['status'])) {
         echo '<div class="container col-sm-6 mx-auto alert alert-danger" role="alert">';
         echo $view_bag['status'];

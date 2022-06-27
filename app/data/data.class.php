@@ -17,6 +17,10 @@ class Data {
         return self::$ds->get_posts();
     }
 
+    static public function get_tutorials(){
+        return self::$ds->get_tutorials();
+    }
+
     static public function get_challenges(){
         return self::$ds->get_challenges();
     }
@@ -44,6 +48,10 @@ class Data {
     static public function get_challenge($id){
         return self::$ds->get_challenge($id);
     }
+
+    static public function get_tutorial($id){
+        return self::$ds->get_tutorial($id);
+    }
     
     static public function search_challenges($challenge_keyword) {
         return self::$ds->search_challenges($challenge_keyword);
@@ -51,6 +59,10 @@ class Data {
     
     static public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
         return self::$ds->add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner);
+    }
+
+    static public function add_tutorial($title, $category, $description, $owner, $resource_url, $date) {
+        return self::$ds->add_tutorial($title, $category, $description, $owner, $resource_url, $date);
     }
     
     static public function update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint) {

@@ -10,6 +10,18 @@ function view($name, $model = '') {
     require(APP_PATH . "views/layout.view.php");
 }
 
+function verify_pdf($temp_file_name){
+    $file_info = finfo_open(FILEINFO_MIME_TYPE);
+    $file_type = finfo_file($file_info, $temp_file_name);
+
+    if ($file_type == "application/pdf"){
+        return true;
+    } else {
+        return false;
+    }
+    finfo_close($file_info);
+}
+
 function is_get() {
     return $_SERVER['REQUEST_METHOD'] === 'GET';
 }

@@ -3,6 +3,7 @@
 require('challenge.class.php');
 require('user.class.php');
 require('post.class.php');
+require('tutorial.class.php');
 
 class DataProvider {
     function __construct($source) {
@@ -21,12 +22,20 @@ class DataProvider {
 
     }
 
+    public function get_tutorials(){
+        
+    }
+
     public function get_challenge($id){
 
     }
 
     public function get_post($id){
 
+    }
+
+    public function get_tutorial($id){
+        
     }
     
     public function get_user($user_id) {
@@ -46,6 +55,10 @@ class DataProvider {
     }
     
     public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
+        
+    }
+
+    public function add_tutorial($title, $category, $description, $owner, $resource_url, $date){
         
     }
     
