@@ -8,7 +8,7 @@
 require('app/app.php');
 
 $view_bag = [
-    'title' => 'Syliant.xyz',
+    'title' => 'Syliant Security',
     'heading' => 'Get Started With Syliant'
 ];
 

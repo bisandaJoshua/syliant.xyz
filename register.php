@@ -8,7 +8,7 @@ if (is_user_authenticated()) {
 }
 
 $view_bag = [
-    'title' => 'Syliant.xyz',
+    'title' => 'Syliant Security',
     'heading' => 'Member Registration',
     'status' => ''
 ];

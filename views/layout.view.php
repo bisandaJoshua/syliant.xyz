@@ -8,29 +8,29 @@
 
 		if ( $_SESSION['account_type'] == 'teacher' ){
 			$main_menu = [
-				'home' => 'index.php',
-				'create' => 'create.php',
-				'manage students' => 'students.php',
-				'leaderboard' => 'leaderboard.php',
-				'profile' => "profile.php?uid=$uid",
-				'logout' => '../logout.php'
+				'<i class="bi-house"></i> home' => 'index.php',
+				'<i class="bi-box"></i> creation hub' => 'create.php',
+				'<i class="bi-gear"></i> students hub' => 'students.php',
+				'<i class="bi-award"></i> leaderboard' => 'leaderboard.php',
+				'<i class="bi-person"></i> profile' => "profile.php?uid=$uid",
+				'<i class="bi-box-arrow-left"></i> logout' => '../logout.php'
 			];
 		} else {
 			$main_menu = [
-				'home' => 'index.php',
-				'challenges' => 'challenges.php',
-				'forum' => 'forum.php',
-				'leaderboard' => 'leaderboard.php',
-				'profile' => "profile.php?uid=$uid",
-				'logout' => '../logout.php'
+				'<i class="bi-house"></i> home' => 'index.php',
+				'<i class="bi-puzzle"></i> challenges' => 'challenges.php',
+				'<i class="bi-blockquote-left"></i> forum' => 'forum.php',
+				'<i class="bi-award"></i> leaderboard' => 'leaderboard.php',
+				'<i class="bi-person"></i> profile' => "profile.php?uid=$uid",
+				'<i class="bi-box-arrow-left"></i> logout' => '../logout.php'
 			];
 		}
 	} else {
 		$main_menu = [
-			'home' => 'index.php',
-			'register' => 'register.php',
-			'login' => 'login.php',
-			'about' => 'about.php'
+			'<i class="bi-house"></i> home' => 'index.php',
+			'<i class="bi-pencil-square"></i> register' => 'register.php',
+			'<i class="bi-box-arrow-in-right"></i> login' => 'login.php',
+			'<i class="bi-book"></i> about' => 'about.php'
 		];
 	}
 
@@ -44,6 +44,7 @@
 
     <title><?= ucwords($view_bag['title']); ?></title>
 	<link rel="icon" type="image/x-icon" href="<?= URL_ROOT;?>/assets/logo.png">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	<style>
 		body {
@@ -79,7 +80,8 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
 		<footer class="pt-5 my-5 text-muted text-center border-top">
-    		Created by Joshua Bisanda &middot; &copy; 2022
+    		Created by Joshua Bisanda &middot; &copy; 2022 <br>
+			<a href="https://storyset.com/work" class="text-decoration-none">All illustrations by Storyset</a>
   		</footer>
     </body>
 </html>

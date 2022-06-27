@@ -1,12 +1,19 @@
 <main class="container mt-3">
-    <h1><?= $view_bag['heading'];?></h1>
-    <p class="fs-5 col-md-8">Syliant is a platform geared to aid teachers and students around the world better learn and solidify information security skills and concepts. By providing an easy to navigate user interface, students can enjoy solving challenges and collaborating with their peers in practicing the use of tools in order to solidify their understanding of the skills required of them in the information security field.</p>
+    <div class="row">
+      <div class="col">
+        <img src="<?= URL_ROOT;?>/assets/Server.gif" alt="Server" class="img-fluid rounded">
+      </div>
+      <div class="col-lg-8">
+        <h1><?= $view_bag['heading'];?></h1>
+        <p class="lead">Syliant is a platform geared to aid teachers and students around the world better learn and solidify information security skills and concepts. By providing an easy to navigate user interface, students can enjoy solving challenges and collaborating with their peers in practicing the use of tools in order to solidify their understanding of the skills required of them in the information security field.</p>
 
-    <div class="mb-5">
-      <a href="register.php" class="btn btn-outline-primary btn-lg px-4">Let's Get Started!</a>
+        <div class="mb-5">
+          <a href="register.php" class="btn btn-outline-primary btn-lg px-4">Let's Get Started!</a>
+        </div>
+      </div>
     </div>
 
-    <hr class="col-3 col-md-2 mb-5">
+    <hr class="mb-5">
 
     <div class="row g-5">
       <div class="col-md-6">

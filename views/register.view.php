@@ -1,7 +1,11 @@
 <main class="container">
   <div class="row">
-    <div class="col-lg-12 text-center">
-      <h1 class="mt-5"><?= $view_bag['heading']?></h1>
+    <div class="col-lg-7 mx-auto text-center">
+      <h1 class="mt-3"><?= $view_bag['heading']?></h1>
+      <img src="<?= URL_ROOT;?>/assets/Hacker.gif" alt="hacker image" width="250">
+      <p class="lead">
+        Kindly enter your details below in order to register. Ensure you enter your full name according to what is available on any valid identification document as this information is cross-checked. The information you enter on this website will be kept private and only be used to tailor the functionality of the platform.
+      </p>
     </div>
   </div>
   <div class="row">
@@ -24,9 +28,12 @@
             <div class="col">
                 <select class="form-select" aria-label="school or college" name="school">
                     <option selected>Your School or Institution</option>
-                    <option value="Open University Tanzania">The Open University of Tanzania</option>
+                    <option value="Open University Tanzania">Open University of Tanzania</option>
                     <option value="Triumphant College">Triumphant College</option>
                     <option value="ZCAS University">ZCAS University</option>
+                    <option value="Copperbelt University">Copperbelt University</option>
+                    <option value="University of Zambia">University of Zambia</option>
+                    <option value="University of Namibia">University of Namibia</option>
                     <option value="Other">Other</option>
                 </select>
             </div>
