@@ -44,12 +44,14 @@ function sanitize($value) {
     return $temp;
 }
 
-function is_user_authenticated() {
+function authentication_check() {
+    // was: is_user_authenticated
     return isset($_SESSION['logged_in_user']);
 }
 
-function ensure_user_is_authenticated() {
-    if (!is_user_authenticated()) {
+function verify_authentication() {
+    // was ensure_user_is_authenticated
+    if (!authentication_check()) {
       redirect('../login.php');
     }
 }

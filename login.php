@@ -5,10 +5,10 @@
 
  // always start a a session to ensure logged in users cant see this page.
 session_start();
-require('app/app.php');
+require('app/app_main.php');
 
 // ensure logged in members cant access this page.
-if (is_user_authenticated()) {
+if (authentication_check()) {
     redirect_user('members/'); //redirect them to the members section.
 }
 
@@ -31,7 +31,7 @@ if (isset($_GET['reg'])){
 	}
 }
 
-if (is_post()) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // when the form is submitted, grab the credentials sent.
   // make sure the email is a valid email address
   $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);

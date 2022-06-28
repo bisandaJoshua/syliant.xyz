@@ -10,14 +10,14 @@ session_start();
 
 // grab the app.php file as it is the heart of the application and has the necessary calls
 // to all the needed functions in the application.
-require('app/app.php');
+require('app/app_main.php');
 
 // ensure logged in members cant access this page.
-if (is_user_authenticated()) {
+if (authentication_check()) {
     redirect_user('members/'); //redirect them to the members section.
 }
 
-// prepare the view_bag array as it carries variables you would want to display on the
+// prepare the data_set array as it carries variables you would want to display on the
 // page that can't be pulled in from the database.
 $data_set = [
     'title' => 'Syliant Security',
@@ -27,7 +27,7 @@ $data_set = [
 
 // listen for a post request, then add the new user to the database. 
 // TODO: we need to add functionality to check that existing users do not register again.
-if (is_post()) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fn = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_SPECIAL_CHARS);
     $ln = filter_input(INPUT_POST, 'lastname', FILTER_SANITIZE_SPECIAL_CHARS);
     $bio = filter_input(INPUT_POST, 'bio', FILTER_SANITIZE_SPECIAL_CHARS);

@@ -18,6 +18,10 @@ class DataProvider {
         
     }
 
+    public function exists_user($user_email){
+
+    }
+
     public function get_challenges(){
 
     }

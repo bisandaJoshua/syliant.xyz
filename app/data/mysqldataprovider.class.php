@@ -13,6 +13,41 @@ class MySqlDataProvider extends DataProvider {
         return $this->query_tutorials('SELECT * FROM tutorials_tb ORDER BY tutorial_date DESC');
     }
 
+    /**
+     * this function was built to verify whether a registering user already 
+     * exists in our database. If so, redirect them to the login page.
+     */
+    public function exists_user($user_email){
+        // the function begins by connecting to the database.
+        $db = $this->connect();
+
+        if ($db == null) {
+            return; // if the connection fails, return nothing.
+        }
+
+        // if the connection succeeds, grab all the columns from the users table
+        // based on the email obtained from the query string.
+        $sql = 'SELECT * FROM users_tb WHERE user_email = :user_email';
+        $smt = $db->prepare($sql);
+
+        $smt->execute([
+            ':user_email' => $user_email,
+        ]);
+
+        $data = $smt->fetchAll(PDO::FETCH_CLASS, 'User');
+
+        $smt = null;
+        $db = null;
+
+        if (empty($data)) {
+            return false;
+        }
+
+        
+
+        return true;
+    }
+
     public function authenticate_user($email, $password) {
         $db = $this->connect();
 
@@ -387,7 +422,7 @@ class MySqlDataProvider extends DataProvider {
 
     private function connect() {
         try {
-            return new PDO($this->source, CONFIG['db_user'], CONFIG['db_password']);
+            return new PDO($this->source, DB_CONFIG['db_user'], DB_CONFIG['db_password']);
         } catch (PDOException $e) {
             return null;
         }

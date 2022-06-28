@@ -1,9 +1,11 @@
 <?php
 session_start();
-require('../app/app.php');
+require('../app/app_main.php');
 
-ensure_user_is_authenticated();
+// make sure only logged in users can access this page
+verify_authentication();
 
+//prepare the data set to display non-db variables on the page.
 $data_set = [
     'title' => 'Syliant Security',
     'heading' => '',

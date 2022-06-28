@@ -5,15 +5,19 @@ require('dataprovider.class.php');
 
 class Data {
     static private $ds;
-    static public function initialize(DataProvider $data_provider) {
+    static public function initialize(DataProvider $data_provider){
         return self::$ds = $data_provider;
     }
 
-    static public function get_users() {    
+    static public function get_users(){    
         return self::$ds->get_users();
     }
 
-    static public function get_students_acc_points() {    
+    static public function exists_user($user_email){
+        return self::$ds->exists_user($user_email);
+    }
+
+    static public function get_students_acc_points(){    
         return self::$ds->get_students_acc_points();
     }
 
@@ -41,7 +45,7 @@ class Data {
         return self::$ds->register_user($fn, $ln, $bio, $email, $acc_type, $school, $points, $password, $country);
     }
     
-    static public function get_user($user_id) {
+    static public function get_user($user_id){
         return self::$ds->get_user($user_id);
     }
 
@@ -57,23 +61,23 @@ class Data {
         return self::$ds->get_tutorial($id);
     }
     
-    static public function search_challenges($challenge_keyword) {
+    static public function search_challenges($challenge_keyword){
         return self::$ds->search_challenges($challenge_keyword);
     }
     
-    static public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner) {
+    static public function add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner){
         return self::$ds->add_challenge($title, $category, $description, $points, $solution, $date, $resource, $hint, $owner);
     }
 
-    static public function add_tutorial($title, $category, $description, $owner, $resource_url, $date) {
+    static public function add_tutorial($title, $category, $description, $owner, $resource_url, $date){
         return self::$ds->add_tutorial($title, $category, $description, $owner, $resource_url, $date);
     }
     
-    static public function update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint) {
+    static public function update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint){
         return self::$ds->update_challenge($original_title, $new_title, $category, $description, $points, $solution, $date, $resource, $hint);
     }
     
-    static public function delete_challenge($id) {
+    static public function delete_challenge($id){
         return self::$ds->delete_challenge($id);
     }
 

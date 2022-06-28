@@ -1,10 +1,10 @@
 <?php
 
 session_start();
-require('../app/app.php');
+require('../app/app_main.php');
 
 // make sure only logged in users can access this page
-ensure_user_is_authenticated();
+verify_authentication();
 
 $data_set = [
     'title' => 'Syliant Security'

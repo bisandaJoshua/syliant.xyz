@@ -7,9 +7,10 @@
  // as usual, the session start is required on all pages. 
  // there has to be a better way to do this...
 session_start();
-require('../app/app.php');
+require('../app/app_main.php');
 
-ensure_user_is_authenticated();
+// ensure that only logged in users can access this page.
+verify_authentication();
 
 // prepare the data_set to be used to display changing info
 $data_set = [

@@ -1,11 +1,12 @@
 <?php
 
 session_start();
-require('../app/app.php');
+require('../app/app_main.php');
 
-// validate logged in user
-ensure_user_is_authenticated();
+// ensure that only logged in users can see this page
+verify_authentication();
 
+// instatiate the dataset
 $data_set = [
     'title' => 'Syliant Security',
     'heading' => 'Student Leaderboard'

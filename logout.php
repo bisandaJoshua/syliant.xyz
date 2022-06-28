@@ -9,7 +9,7 @@ session_unset();
 session_destroy();
 
 // this file is required in order to run the application.
-require('app/app.php');
+require('app/app_main.php');
 
 // send people back to the login page after clearing the sessions.
 redirect_user('login.php');

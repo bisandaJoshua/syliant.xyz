@@ -1,10 +1,12 @@
 <?php
 
 session_start();
-require('../app/app.php');
+require('../app/app_main.php');
 
-ensure_user_is_authenticated();
+// ensure that only logged in users can see this page
+verify_authentication();
 
+// instantiate the dataset
 $data_set = [
     'title' => 'Syliant Security',
     'heading' => 'Creation Hub',
@@ -15,11 +17,9 @@ $data_set = [
 $user_id = $_SESSION['tracker'];
 $user_data = Data::get_user($user_id);
 
-if ($user_data == false) {
-    render_page('not_found');
-    die();
-}
 
+
+// create the user's full name
 $fn = $user_data->user_fn;
 $ln = $user_data->user_ln;
 $user_full_name = $fn . ' ' . $ln; // this is the user's full name
@@ -43,7 +43,9 @@ if ( isset( $_POST['post_challenge'] ) ){
     $folder = "./_uploads/" . $filename;
     $challenge_resource_url = $filename;
 
+    // ensure the fields in the form are not empty
     if (!empty($challenge_title) && !empty($challenge_category) && !empty($challenge_description) && !empty($challenge_points) && !empty($challenge_soln) && !empty($challenge_hint)){
+        // attempt to create the challenge and upload the challenge file.
         try {
             Data::add_challenge($challenge_title, $challenge_category, $challenge_description, $challenge_points, $challenge_soln, $challenge_date, $challenge_resource_url, $challenge_hint, $challenge_owner);
             move_uploaded_file($tempname, $folder);

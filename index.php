@@ -5,7 +5,7 @@
  * This app has been built with data abstraction in mind.
  */
 
-require('app/app.php');
+require('app/app_main.php');
 
 $data_set = [
     'title' => 'Syliant Security',
