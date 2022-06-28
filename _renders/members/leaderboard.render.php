@@ -1,5 +1,5 @@
 <main class="container">
-    <h1 class="mt-3"><?= $view_bag['heading'];?></h1>
+    <h1 class="mt-3"><?= $data_set['heading'];?></h1>
     <p class="lead">
         This is the student leaderboard, showcasing rankings of students based on the number and level of challenges they have solved. It is by no means an indication of which students are the best, but could be used to show which students have managed to solve challenges and to what degree.
     </p>
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
         <?php $rank = 1;?>    
-        <?php foreach($model as $student):?>
+        <?php foreach($data_model as $student):?>
             <tr>
                 <td><?= $rank;?></td>
                 <td><?= ucwords($student->user_fn . ' ' . $student->user_ln);?></td>

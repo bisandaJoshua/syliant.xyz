@@ -5,7 +5,7 @@ require('../app/app.php');
 
 ensure_user_is_authenticated();
 
-$view_bag = [
+$data_set = [
     'title' => 'Syliant Security',
     'heading' => 'Creation Hub',
     'status' => ''
@@ -16,7 +16,7 @@ $user_id = $_SESSION['tracker'];
 $user_data = Data::get_user($user_id);
 
 if ($user_data == false) {
-    view('not_found');
+    render_page('not_found');
     die();
 }
 
@@ -47,12 +47,12 @@ if ( isset( $_POST['post_challenge'] ) ){
         try {
             Data::add_challenge($challenge_title, $challenge_category, $challenge_description, $challenge_points, $challenge_soln, $challenge_date, $challenge_resource_url, $challenge_hint, $challenge_owner);
             move_uploaded_file($tempname, $folder);
-            $view_bag['status'] = "Challenge created successfully.";
+            $data_set['status'] = "Challenge created successfully.";
         } catch (PDOException $e){
-            $view_bag['status'] = $e;
+            $data_set['status'] = $e;
         }
     } else {
-        $view_bag['status'] = 'Kindly ensure you have filled out all the fields.';
+        $data_set['status'] = 'Kindly ensure you have filled out all the fields.';
     }
 }
 
@@ -76,11 +76,11 @@ if ( isset( $_POST['publish_tutorial'] ) ){
         try {
             Data::add_tutorial($tutorial_title, $tutorial_category, $tutorial_description, $tutorial_owner, $tutorial_resource_url, $tutorial_date);
             move_uploaded_file($tempname, $folder);
-            $view_bag['status'] = "Tutorial created successfully.";
+            $data_set['status'] = "Tutorial created successfully.";
         } catch (PDOException $e){
-            $view_bag['status'] = $e;
+            $data_set['status'] = $e;
         }
     }
 }
 
-view('members/create');
+render_page('members/create');

@@ -4,12 +4,13 @@ require('../app/app.php');
 
 ensure_user_is_authenticated();
 
-$view_bag = [
+$data_set = [
     'title' => 'Syliant Security',
     'heading' => '',
     'status' => ''
 ];
 
+// instantiate the challenge ID
 $chid = '';
 
 // listen for incoming GET requests.
@@ -22,12 +23,12 @@ if (is_get()) {
     $ans = '';
     if (isset($_GET['ans'])){
         $ans = filter_input(INPUT_GET, 'ans', FILTER_VALIDATE_INT);
-        $view_bag['status'] = 'Wrong answer, try again.';
+        $data_set['status'] = 'Wrong answer, try again.';
     }
 
     if (empty($chid) || $chid < 1) {
         // if the challenge id is not present, show a 404
-        view('not_found');
+        render_page('not_found');
         die();
     }
 
@@ -35,14 +36,14 @@ if (is_get()) {
 
     if ($challenge === false) {
         // if the challenge does not exist in the db, show a 404
-        view('not_found');
+        render_page('not_found');
         die();
     }
 
     // TODO: run some checks to make sure someone cant just type the url for a challenge
     // and earn extra points
 
-    view('members/challenge', $challenge);
+    render_page('members/challenge', $challenge);
 }
 
 // listen for incoming submissions.
@@ -75,9 +76,9 @@ if ( is_post() ){
 
         // add challenger to list of solvers
         Data::add_solver($challenge_id, $new_solvers);
-        redirect("congrats.php");
+        redirect_user("congrats.php");
     } else {
-        redirect("challenge.php?chid=$challenge_id&ans=0");
+        redirect_user("challenge.php?chid=$challenge_id&ans=0");
     }
 
 }

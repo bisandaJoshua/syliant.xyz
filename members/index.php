@@ -6,11 +6,13 @@ require('../app/app.php');
 // validate logged in user
 ensure_user_is_authenticated();
 
-$view_bag = [
+$data_set = [
     'title' => 'Syliant Security',
     'heading' => 'Latest Tutorials'
 ];
 
-$tutorials = Data::get_tutorials(); // fetch all the tutorials from the db
+// fetch all the tutorials from the db
+$tutorials = Data::get_tutorials();
 
-view('members/index', $tutorials);
+// render the tutorials page with the tutorials grabbed from the db
+render_page('members/index', $tutorials);

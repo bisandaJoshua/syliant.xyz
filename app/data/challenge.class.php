@@ -1,4 +1,8 @@
 <?php
+/**
+ * This is the class for challenges, it contains all the properties 
+ * A challenge would have and is used when performing all challenge related queries.
+ */
 
 class Challenge {
     public $challenge_id;

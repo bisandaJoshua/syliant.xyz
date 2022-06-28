@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="mt-3"><?= $view_bag['heading'] ?></h1>
+            <h1 class="mt-3"><?= $data_set['heading'] ?></h1>
 
-            <?php foreach( $model as $tutorial ):?>
+            <?php foreach( $data_model as $tutorial ):?>
                 <div class="bg-light p-3 rounded-3 mb-3">
                     <header class="row">
                         <div class="col text-primary"><h3><?= ucwords($tutorial->tutorial_title);?></h3></div>

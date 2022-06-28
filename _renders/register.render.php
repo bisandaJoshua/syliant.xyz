@@ -1,7 +1,7 @@
 <main class="container">
   <div class="row">
     <div class="col-lg-7 mx-auto text-center">
-      <h1 class="mt-3"><?= $view_bag['heading']?></h1>
+      <h1 class="mt-3"><?= $data_set['heading']?></h1>
       <img src="<?= URL_ROOT;?>/assets/Hacker.gif" alt="hacker image" width="250">
       <p class="lead">
         Kindly enter your details below in order to register. Ensure you enter your full name according to what is available on any valid identification document as this information is cross-checked. The information you enter on this website will be kept private and only be used to tailor the functionality of the platform.
@@ -58,9 +58,9 @@
   </div>
   <?php
     // display login error messages here. 
-    if (!empty($view_bag['status'])) {
+    if (!empty($data_set['status'])) {
       echo '<div class="container col-sm-5 mx-auto alert alert-danger" role="alert">';
-      echo $view_bag['status'];
+      echo $data_set['status'];
       echo '</div>';
     }
   ?>

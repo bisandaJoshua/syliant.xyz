@@ -7,9 +7,10 @@
 
 require('app/app.php');
 
-$view_bag = [
+$data_set = [
     'title' => 'Syliant Security',
     'heading' => 'Get Started With Syliant'
 ];
 
-view('index');
+// render the index view 
+render_page('index');

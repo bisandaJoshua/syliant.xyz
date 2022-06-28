@@ -113,16 +113,16 @@
 <main class="container">
     <!-- <div class="p-5 mb-4 bg-light rounded-3">
         <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold"><?= $view_bag['heading'];?></h1>
+            <h1 class="display-5 fw-bold"><?= $data_set['heading'];?></h1>
             <p class="col-md-8 fs-4">This is the creation hub. This area allows teachers to create content for students to use as study material or as exercises to hone their skills and increase their understanding of specific concepts. Everything created in this section will be accessible to all students of all institutions, and they can collaborate in learning and tackling the challenges presented to them here.</p>
         </div>
         
     </div> -->
     <?php
-        // display login error messages here. 
-        if (!empty($view_bag['status'])) {
-        echo '<div class="container col-sm-5 mx-auto alert alert-warning" role="alert">';
-        echo $view_bag['status'];
+        // display creation error messages here. 
+        if (!empty($data_set['status'])) {
+        echo '<div class="container col-sm-5 mx-auto alert alert-danger" role="alert">';
+        echo $data_set['status'];
         echo '</div>';
         }
     ?>

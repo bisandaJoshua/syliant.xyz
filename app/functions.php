@@ -1,13 +1,17 @@
 <?php
+/**
+ * This is the main functions file. It contains functions that are used 
+ * throughout the app for the sake of functionality such as redirecting users.
+ */
 
-function redirect($url) {
+function redirect_user($url) {
     header("Location: $url");
     die();
 }
 
-function view($name, $model = '') {
-    global $view_bag;
-    require(APP_PATH . "views/layout.view.php");
+function render_page($page_name, $data_model = '') {
+    global $data_set;
+    require(APP_PATH . "_renders/layout.render.php");
 }
 
 function verify_pdf($temp_file_name){

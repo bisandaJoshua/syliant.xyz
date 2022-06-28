@@ -3,33 +3,35 @@
 session_start();
 require('../app/app.php');
 
+// make sure only logged in users can access this page
 ensure_user_is_authenticated();
 
-$view_bag = [
+$data_set = [
     'title' => 'Syliant Security'
 ];
 
+// instantiate the tutorial ID
 $tut_id = '';
 
 if (is_get()) {
     $tut_id = filter_input(INPUT_GET, 'tut_id', FILTER_VALIDATE_INT);
 
     if (empty($tut_id) || $tut_id < 1) {
-        // if the challenge id is not present, show a 404
-        view('not_found');
+        // if the tutorial id is not present, show a 404
+        render_page('not_found');
         die();
     }
 
-    $tutorial = Data::get_tutorial($tut_id); // grab the whole challenge from the db
+    $tutorial = Data::get_tutorial($tut_id); // grab the whole tutorial from the db
 
     if ($tutorial === false) {
-        // if the challenge does not exist in the db, show a 404
-        view('not_found');
+        // if the tutorial does not exist in the db, show a 404
+        render_page('not_found');
         die();
     }
 
-    // TODO: run some checks to make sure someone cant just type the url for a challenge
-    // and earn extra points
 
-    view('members/tutorial', $tutorial);
+
+    // render the tutorial page passing the tutorial as a variable
+    render_page('members/tutorial', $tutorial);
 }
